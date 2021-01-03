@@ -4,6 +4,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import UnexpectedAlertPresentException
 from selenium.common.exceptions import StaleElementReferenceException
 from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoAlertPresentException
+from selenium.common.exceptions import WebDriverException
 
 
 class DaumCrawler() :
@@ -147,9 +149,14 @@ class DaumCrawler() :
         print(e.__dict__['msg'])
         continue
       except UnexpectedAlertPresentException as e :
-        print(e.__dict__['msg'])
-        result = self.driver.switch_to_alert()
-        result.dismiss()
+        try :  
+          print(e.__dict__['msg'])
+          result = self.driver.switch_to_alert()
+          result.dismiss()
+        except NoAlertPresentException as e :
+            pass
+        continue
+      except WebDriverException as e :
         continue
 
       if 'mainFrame' in iframe_names :
