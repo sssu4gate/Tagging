@@ -1,0 +1,31 @@
+##sentence tokenize library/
+pip3 install kss
+
+##spacing check library 
+pip3 install git+https://github.com/haven-jeon/PyKoSpacing.git
+
+##grammar check library 
+pip3 install git+https://github.com/ssut/py-hanspell.git
+
+
+##Normalize emoticon and repetitive 
+pip3 install soynlp
+
+##Dictionary of Foreign Language
+curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=1RNYpLE-xbMCGtiEHIoNsCmfcyJP3kLYn" > /dev/null
+curl -Lb ./cookie "https://drive.google.com/uc?export=download&confirm=`awk '/download/ {print $NF}' ./cookie`&id=1RNYpLE-xbMCGtiEHIoNsCmfcyJP3kLYn" -o confused_loanwords.txt
+
+##Morpehem Tokenizer khaii 
+git clone https://github.com/kakao/khaiii.git
+pip3 install cmake
+mkdir build
+cd build && cmake /content/khaiii
+cd /content/build/ && make all
+cd /content/build/ && make resource
+cd /content/build && make install
+cd /content/build && make package_python
+pip3 install /content/build/package_python
+
+
+
+
